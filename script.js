@@ -43,6 +43,15 @@ const author = document.querySelector('#author');
 const numpages = document.querySelector('#numpages');
 const read = document.querySelectorAll('input[name="checkread"]');
 
+//PRINT LIBRARY
+
+myLibrary.forEach(book => {
+
+    createRow(book.title, book.author, book.pages, book.read);
+
+})
+
+
 //SAVE DATA NEW BOOK
 
 
@@ -105,7 +114,7 @@ function createRow (title,author,pages,read){
 
 //Test
 
-const buttonTest = document.querySelector('button.Eragon');
+const buttonTest = document.querySelector('button.testing');
 buttonTest.addEventListener('click', trial);
 function trial(e){
     console.log (e.path[2]); 
@@ -113,5 +122,5 @@ function trial(e){
 }
 
 
-//find the class of the row
-//select the 
+
+
