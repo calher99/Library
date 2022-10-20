@@ -9,7 +9,8 @@
     <title>Library</title>
 </head>
 <body>
-    <div>
+    <!-- Form to enter new books -->
+    <div class="addForm">
         <h1>Add books</h1>
         <form id="newBook" name="addBook" action="">
             <label for="title">Title: *</label>
@@ -39,22 +40,46 @@
                 <legend>Have you read the book?</legend>
                 <p>
                     <label>
-                      <input type="radio" name="checkread" value="yes">
+                      <input type="radio" name="checkread" value="1">
                       Yes
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="radio" name="checkread"" value="no">
+                      <input type="radio" name="checkread"" value="0">
                       No
                     </label>
                   </p>
             </fieldset>
             <button type="button" id="addBook">Submit</button>
         </form>
+    </div>
+    <!-- Table for Display -->
+    <div class="displayBook">
+        <table>
+            <caption>List of User Books</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Read</th>
+                </tr>
+            </thead>
+          
+            <tbody>
+                <tr>
+                    <td scope="row">Eragon</td>
+                    <td>Christopher Nolan</td>
+                    <td>299</td>
+                    <td>Yes</td>
+                  </tr>
+                 
+            </tbody>
+            
+      </table>
 
 
     </div>
-    
 </body>
 </html>
