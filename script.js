@@ -1,3 +1,5 @@
+
+
 let myLibrary =[];
 
 function book(title, author, pages, read){
@@ -7,7 +9,8 @@ function book(title, author, pages, read){
     this.read = read;
 }
 book.prototype.info = function() {
-    if(this.read){
+    console.log(this.read);
+    if(this.read===1){
         return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is read. `); 
     }else{
         return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is not read. `); 
@@ -29,22 +32,28 @@ function displayBook(titleSearched) {
 addBookToLibrary(`eragon`, `Christopher Nolan`,`299`,0);
 addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,1);
 
-//GET DATA FROM INPUTS
+//DOM MANIPULATION
+
+//DEFINE INPUTS
 
 
 const buttonAdd = document.querySelector('#addBook');
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
 const numpages = document.querySelector('#numpages');
+const read = document.querySelectorAll('input[name="checkread"]');
 
-
+//SAVE DATA NEW BOOK
 
 
 buttonAdd.addEventListener(`click`, addBook );
 
 function addBook() {
-    
-    addBookToLibrary(title.value, author.value,numpages.value,1);
+
+    let readArray=Array.from(read);
+    const readValue = getRadio(readArray);
+    console.log(`Book is read ${readValue}`)
+    addBookToLibrary(title.value, author.value,numpages.value,readValue);
     myLibrary.forEach(book => {console.log(book.info())})
     resetInputs();
 }
@@ -56,4 +65,12 @@ function resetInputs(){
     title.value = null;
     author.value = null;
     numpages.value = null;
+    
 }
+
+//Radio button check
+
+function getRadio (array){
+    const checkedButton = array.filter(array => array.checked);
+    return parseInt(checkedButton[0].value);
+} 
