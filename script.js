@@ -29,8 +29,31 @@ function displayBook(titleSearched) {
 addBookToLibrary(`eragon`, `Christopher Nolan`,`299`,0);
 addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,1);
 
+//GET DATA FROM INPUTS
 
 
-console.log(myLibrary[1].info());
+const buttonAdd = document.querySelector('#addBook');
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const numpages = document.querySelector('#numpages');
 
-console.log(displayBook("erg"));
+
+
+
+buttonAdd.addEventListener(`click`, addBook );
+
+function addBook() {
+    
+    addBookToLibrary(title.value, author.value,numpages.value,1);
+    myLibrary.forEach(book => {console.log(book.info())})
+    resetInputs();
+}
+
+
+//RESET InpUTS
+
+function resetInputs(){
+    title.value = null;
+    author.value = null;
+    numpages.value = null;
+}
