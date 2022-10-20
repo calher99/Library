@@ -21,7 +21,7 @@ function addBookToLibrary(title, author, pages, read){
     myLibrary.push(new book(title, author, pages, read));
 }
 
-function displayBook(titleSearched) {
+function findBook(titleSearched) {
     const foundBook = myLibrary.find((book) => {
        return book.title === titleSearched;
     });
@@ -31,6 +31,7 @@ function displayBook(titleSearched) {
 
 addBookToLibrary(`Eragon`, `Christopher Nolan`,`299`,0);
 addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,1);
+addBookToLibrary(`It`, `Stephen King`,`1328`,1);
 
 //DOM MANIPULATION
 
@@ -43,13 +44,18 @@ const author = document.querySelector('#author');
 const numpages = document.querySelector('#numpages');
 const read = document.querySelectorAll('input[name="checkread"]');
 
+printLibrary();
+
+
 //PRINT LIBRARY
 
-myLibrary.forEach(book => {
+function printLibrary(){
+    myLibrary.forEach(book => {
 
-    createRow(book.title, book.author, book.pages, book.read);
+        createRow(book.title, book.author, book.pages, book.read);
+    })
+}
 
-})
 
 
 //SAVE DATA NEW BOOK
@@ -118,9 +124,25 @@ const buttonTest = document.querySelector('button.testing');
 buttonTest.addEventListener('click', trial);
 function trial(e){
     console.log (e.path[2]); 
-    console.log(e.target.classList.value);   
+    console.log(e.target.classList.value); 
+
+    removeFromLibrary("It");
 }
 
 
+//FUNCTION TO REMOVE
 
+function removeFromLibrary (title) {
+    const bookRemove = findBook(title);
+    const index = myLibrary.indexOf(bookRemove);
+    myLibrary.splice(index, 1);
+    myLibrary.forEach(book => {console.log(book.info())})
+
+//     let index = myLibrary.indexOf(title);
+//     console.log(index)
+//     if (index !== -1) {
+//         myLibrary.splice(index, 1);
+//     }
+// myLibrary.forEach(book => {console.log(book.info())})
+}
 
