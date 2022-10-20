@@ -11,7 +11,7 @@
 <body>
     <div>
         <h1>Add books</h1>
-        <form id="newBook" name="addBook" action="#">
+        <form id="newBook" name="addBook" action="">
             <label for="title">Title: *</label>
             <input  type="text" 
                     id="title" 
@@ -35,8 +35,22 @@
                     min="0"
                     max="10000"
                     placeholder=" ">   
-            
-            <button>Submit</button>
+            <fieldset>
+                <legend>Have you read the book?</legend>
+                <p>
+                    <label>
+                      <input type="radio" name="checkread" value="yes">
+                      Yes
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="radio" name="checkread"" value="no">
+                      No
+                    </label>
+                  </p>
+            </fieldset>
+            <button type="button" id="addBook">Submit</button>
         </form>
 
 
