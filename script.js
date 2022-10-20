@@ -29,7 +29,7 @@ function displayBook(titleSearched) {
 }
 
 
-addBookToLibrary(`eragon`, `Christopher Nolan`,`299`,0);
+addBookToLibrary(`Eragon`, `Christopher Nolan`,`299`,0);
 addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,1);
 
 //DOM MANIPULATION
@@ -54,8 +54,10 @@ function addBook() {
     const readValue = getRadio(readArray);
     console.log(`Book is read ${readValue}`)
     addBookToLibrary(title.value, author.value,numpages.value,readValue);
+    createRow(title.value, author.value,numpages.value,readValue);
     myLibrary.forEach(book => {console.log(book.info())})
     resetInputs();
+    
 }
 
 
@@ -71,6 +73,45 @@ function resetInputs(){
 //Radio button check
 
 function getRadio (array){
+    
     const checkedButton = array.filter(array => array.checked);
+    // Did not understand why cant access with checkedButton.value
     return parseInt(checkedButton[0].value);
 } 
+
+//Populate table
+
+function createRow (title,author,pages,read){
+    const table = document.querySelector('table');
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    const td2 = document.createElement('td');
+    const td3 = document.createElement('td');
+    const td4 = document.createElement('td');
+
+    td1.textContent =title;
+    td2.textContent =author;
+    td3.textContent =pages;
+    td4.textContent =read;
+
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+
+    table.appendChild(tr)
+
+}
+
+//Test
+
+const buttonTest = document.querySelector('button.Eragon');
+buttonTest.addEventListener('click', trial);
+function trial(e){
+    console.log (e.path[2]); 
+    console.log(e.target.classList.value);   
+}
+
+
+//find the class of the row
+//select the 
