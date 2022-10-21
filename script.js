@@ -9,7 +9,7 @@ function book(title, author, pages, read){
     this.read = read;
 }
 book.prototype.info = function() {
-    console.log(this.read);
+   
     if(this.read===1){
         return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is read. `); 
     }else{
@@ -33,6 +33,7 @@ addBookToLibrary(`Eragon`, `Christopher Nolan`,`299`,0);
 addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,1);
 addBookToLibrary(`It`, `Stephen King`,`1328`,1);
 
+// --------------------------------------------------------------------------------
 //DOM MANIPULATION
 
 //DEFINE INPUTS
@@ -45,6 +46,27 @@ const numpages = document.querySelector('#numpages');
 const read = document.querySelectorAll('input[name="checkread"]');
 
 printLibrary();
+//NOT WORKING FOR NEW BOOKS BC THE DYNAMICALLY CREATED ELEMENTS ARE NOT FOUND BY EVENT LISTENER
+// WE NEED TO USE EVENT DELEGATION
+
+// let buttonTest = document.querySelectorAll('.bookList button');
+
+// buttonTest.forEach(button => {
+//     button.addEventListener('click', removeBook);
+// })
+
+
+const tBody= document.querySelector('tBody');
+
+tBody.addEventListener('click' , eventDelegation)
+
+function eventDelegation(e){
+    
+    if(e.target.matches('button')){
+        removeBook(e);
+    }
+}
+
 
 
 //PRINT LIBRARY
@@ -58,7 +80,6 @@ function printLibrary(){
 }
 
 
-
 //SAVE DATA NEW BOOK
 
 
@@ -68,10 +89,11 @@ function addBook() {
 
     let readArray=Array.from(read);
     const readValue = getRadio(readArray);
-    console.log(`Book is read ${readValue}`)
     addBookToLibrary(title.value, author.value,numpages.value,readValue);
     createRow(title.value, author.value,numpages.value,readValue);
     myLibrary.forEach(book => {console.log(book.info())})
+    //As we create new book we need to update nodelist of removal buttons
+    // buttonTest = document.querySelectorAll('.bookList button');
     resetInputs();
     
 }
@@ -113,12 +135,11 @@ function createRow (title,author,pages,read){
     td4.textContent =read;
 
     const first = title.replace( /\s/g, '-'); 
-    console.log(first);
 
-
+    //Add button class with book title to loop and find in array later when clicking the button
     btn.classList.add(first);
     td5.appendChild(btn);
-
+    //add table row class to find it later for removal
     tr.classList.add(first);
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -132,21 +153,23 @@ function createRow (title,author,pages,read){
 
 //CLICK & REMOVE
 
-const buttonTest = document.querySelectorAll('.bookList button');
-console.log(buttonTest);
-buttonTest.forEach(button => {
-    button.addEventListener('click', trial)
-})
-function trial(e){
-    
+
+function removeBook(e){
+    // ------
+    // Not working for DOM creations
+    //  -----
+    console.log(e.target.classList.value);
+    const classToRemove =e.target.classList.value;
+    //To get the exact title
     const titleToRemove = e.target.classList.value.replaceAll( '-', ' ')
     removeFromLibrary(titleToRemove);
-    printLibrary();
+    removeFromTable(classToRemove);
+   
 
 }
 
 
-//FUNCTION TO REMOVE
+//FUNCTIONS TO REMOVE
 
 function removeFromLibrary (title) {
     const bookRemove = findBook(title);
@@ -155,3 +178,10 @@ function removeFromLibrary (title) {
     myLibrary.forEach(book => {console.log(book.info())})
 }
 
+function removeFromTable(className){
+
+    const tableRow = document.querySelector(".".concat(className));
+    while (tableRow.firstChild) {
+      tableRow.removeChild(tableRow.lastChild);
+    }
+}
