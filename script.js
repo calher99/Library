@@ -17,6 +17,15 @@ book.prototype.info = function() {
     }  
 } 
 
+book.prototype.setRead = function() {
+    
+    if(this.read ==="read"){
+        this.read = "unread";
+    }else{
+        this.read = "read";
+    }
+}
+
 function addBookToLibrary(title, author, pages, read){
     myLibrary.push(new book(title, author, pages, read));
 }
@@ -63,12 +72,13 @@ const tBody= document.querySelector('tBody');
 tBody.addEventListener('click' , eventDelegation)
 
 function eventDelegation(e){
-    
+   
     if(e.target.matches('button')){
         removeBook(e);
+    }else if (e.target.classList[1] === "read"){
+        modifyRead(e);
     }
 }
-
 
 
 //PRINT LIBRARY
@@ -136,11 +146,14 @@ function createRow (title,author,pages,read){
     td2.textContent =author;
     td3.textContent =pages;
     td4.textContent =read;
+    
+
 
     const first = title.replace( /\s/g, '-'); 
 
     //Add button class with book title to loop and find in array later when clicking the button
     btn.classList.add(first);
+    td4.classList.add(first , "read");
     td5.appendChild(btn);
     //add table row class to find it later for removal
     tr.classList.add(first);
@@ -158,12 +171,9 @@ function createRow (title,author,pages,read){
 
 
 function removeBook(e){
-    // ------
-    // Not working for DOM creations
-    //  -----
-    console.log(e.target.classList.value);
+    //To use in DOM
     const classToRemove =e.target.classList.value;
-    //To get the exact title
+    //To get the exact title to use in array
     const titleToRemove = e.target.classList.value.replaceAll( '-', ' ')
     removeFromLibrary(titleToRemove);
     removeFromTable(classToRemove);
@@ -188,3 +198,33 @@ function removeFromTable(className){
       tableRow.removeChild(tableRow.lastChild);
     }
 }
+
+
+//Modify read status
+
+function modifyRead (e) {
+    
+
+    //To get the exact title to use in array
+    const titleToModify = e.target.classList[0].replaceAll( '-', ' ');
+    modifyReadLibrary(titleToModify);
+    
+    if(e.target.textContent === "read"){
+        e.target.textContent = "unread";
+    }else{
+        e.target.textContent = "read"
+    }
+
+    // Need to get title
+    // Then get index with that title
+    // Then call method to modify read status
+    // Modify the table also.
+}
+
+function modifyReadLibrary (title) {
+    const book = findBook(title);
+    const index = myLibrary.indexOf(book);
+    console.log(index);
+    myLibrary[index].setRead();
+}
+

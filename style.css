@@ -38,7 +38,7 @@ input[type="radio"] {
     border-collapse: collapse;
     border: 2px solid rgb(200,200,200);
     letter-spacing: 1px;
-    font-size: 0.8rem;
+   
   }
   
   td, th {
@@ -70,6 +70,24 @@ input[type="radio"] {
     font-style: italic;
   }
   
-  tfoot {
-    font-weight: bold;
+
+  /* Classic form */
+
+  button,
+  label,
+  input,
+   {
+    display: block;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    height: 30px;
+  }
+
+  button{
+    width: 7rem;
+    height: 1.5rem;
   }
