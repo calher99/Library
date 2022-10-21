@@ -10,7 +10,7 @@ function book(title, author, pages, read){
 }
 book.prototype.info = function() {
    
-    if(this.read===1){
+    if(this.read==="read"){
         return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is read. `); 
     }else{
         return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is not read. `); 
@@ -29,9 +29,9 @@ function findBook(titleSearched) {
 }
 
 
-addBookToLibrary(`Eragon`, `Christopher Nolan`,`299`,0);
-addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,1);
-addBookToLibrary(`It`, `Stephen King`,`1328`,1);
+addBookToLibrary(`Eragon`, `Christopher Nolan`,`299`,'read');
+addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,'unread');
+addBookToLibrary(`It`, `Stephen King`,`1328`,'read');
 
 // --------------------------------------------------------------------------------
 //DOM MANIPULATION
@@ -46,6 +46,8 @@ const numpages = document.querySelector('#numpages');
 const read = document.querySelectorAll('input[name="checkread"]');
 
 printLibrary();
+
+
 //NOT WORKING FOR NEW BOOKS BC THE DYNAMICALLY CREATED ELEMENTS ARE NOT FOUND BY EVENT LISTENER
 // WE NEED TO USE EVENT DELEGATION
 
@@ -55,7 +57,7 @@ printLibrary();
 //     button.addEventListener('click', removeBook);
 // })
 
-
+//Activate buttons to remove a book
 const tBody= document.querySelector('tBody');
 
 tBody.addEventListener('click' , eventDelegation)
@@ -114,12 +116,13 @@ function getRadio (array){
     
     const checkedButton = array.filter(array => array.checked);
     // Did not understand why cant access with checkedButton.value
-    return parseInt(checkedButton[0].value);
+    return checkedButton[0].value;
 } 
 
 //Populate table
 
 function createRow (title,author,pages,read){
+
     const tableBody = document.querySelector('tbody');
     const tr = document.createElement('tr');
     const td1 = document.createElement('td');
