@@ -50,8 +50,9 @@ printLibrary();
 //PRINT LIBRARY
 
 function printLibrary(){
-    myLibrary.forEach(book => {
+    //delete all table
 
+    myLibrary.forEach(book => {
         createRow(book.title, book.author, book.pages, book.read);
     })
 }
@@ -97,36 +98,51 @@ function getRadio (array){
 //Populate table
 
 function createRow (title,author,pages,read){
-    const table = document.querySelector('table');
+    const tableBody = document.querySelector('tbody');
     const tr = document.createElement('tr');
     const td1 = document.createElement('td');
     const td2 = document.createElement('td');
     const td3 = document.createElement('td');
     const td4 = document.createElement('td');
+    const td5 = document.createElement('td');
+    const btn = document.createElement('button');
 
     td1.textContent =title;
     td2.textContent =author;
     td3.textContent =pages;
     td4.textContent =read;
 
+    const first = title.replace( /\s/g, '-'); 
+    console.log(first);
+
+
+    btn.classList.add(first);
+    td5.appendChild(btn);
+
+    tr.classList.add(first);
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
+    tr.appendChild(td5);
 
-    table.appendChild(tr)
+    tableBody.appendChild(tr)
 
 }
 
-//Test
+//CLICK & REMOVE
 
-const buttonTest = document.querySelector('button.testing');
-buttonTest.addEventListener('click', trial);
+const buttonTest = document.querySelectorAll('.bookList button');
+console.log(buttonTest);
+buttonTest.forEach(button => {
+    button.addEventListener('click', trial)
+})
 function trial(e){
-    console.log (e.path[2]); 
-    console.log(e.target.classList.value); 
+    
+    const titleToRemove = e.target.classList.value.replaceAll( '-', ' ')
+    removeFromLibrary(titleToRemove);
+    printLibrary();
 
-    removeFromLibrary("It");
 }
 
 
@@ -137,12 +153,5 @@ function removeFromLibrary (title) {
     const index = myLibrary.indexOf(bookRemove);
     myLibrary.splice(index, 1);
     myLibrary.forEach(book => {console.log(book.info())})
-
-//     let index = myLibrary.indexOf(title);
-//     console.log(index)
-//     if (index !== -1) {
-//         myLibrary.splice(index, 1);
-//     }
-// myLibrary.forEach(book => {console.log(book.info())})
 }
 
