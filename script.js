@@ -41,6 +41,7 @@ function findBook(titleSearched) {
 addBookToLibrary(`Eragon`, `Christopher Nolan`,`299`,'read');
 addBookToLibrary(`Lord of the Rings`, `Tolkien`,`869`,'unread');
 addBookToLibrary(`It`, `Stephen King`,`1328`,'read');
+addBookToLibrary(`Clau Te Quiere`, `Cupido`,`1500`,'read');
 
 // --------------------------------------------------------------------------------
 //DOM MANIPULATION
@@ -146,6 +147,7 @@ function createRow (title,author,pages,read){
     td2.textContent =author;
     td3.textContent =pages;
     td4.textContent =read;
+    btn.textContent="Delete"
     
 
 

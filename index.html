@@ -6,12 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="script.js"> </script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto">
     <title>Library</title>
 </head>
 <body>
+
+    <div class="header">
+      <div class="logo">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" />
+      </svg>
+      </div>
+      <div class="title">My Library</div>
+      <div class="logIn">
+        <div>
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z" />
+      </svg></div>
+        <div>Log In</div>
+      </div>
+
+    </div>
     <!-- Form to enter new books -->
     <div class="addForm">
-        <h1>Add books</h1>
+        <p>Add Books</p>
         <form id="newBook" name="addBook" action="">
             <label for="title">Title: *</label>
             <input  type="text" 
@@ -19,7 +38,6 @@
                     name="title" 
                     required 
                     placeholder=" "
-                    pattern="^[^0-9]+$" 
                     maxlength="245">
             <label for="author">Author: *</label>
             <input  type="text" 
@@ -37,20 +55,17 @@
                     max="10000"
                     placeholder=" ">   
             
-                <legend>Have you read the book?</legend>
-                <p>
-                    <label>
-                      <input type="radio" name="checkread" value="read">
-                      Yes
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input type="radio" name="checkread"" value="unread">
-                      No
-                    </label>
-                  </p>
-            
+            <legend>Have you read the book?</legend>
+            <div class="radio_container">
+              <div class="radio">
+                <label>Yes</label>
+                <input type="radio" name="checkread" value="read">
+              </div>
+              <div class="radio">
+                <label>No</label>
+                <input type="radio" name="checkread"" value="unread">
+              </div>
+            </div>
             <button type="button" id="addBook">Submit</button>
         </form>
     </div>
