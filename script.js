@@ -54,10 +54,6 @@ const title = document.querySelector('#title');
 const author = document.querySelector('#author');
 const numpages = document.querySelector('#numpages');
 const read = document.querySelectorAll('input[name="checkread"]');
-
-printLibrary();
-
-
 //NOT WORKING FOR NEW BOOKS BC THE DYNAMICALLY CREATED ELEMENTS ARE NOT FOUND BY EVENT LISTENER
 // WE NEED TO USE EVENT DELEGATION
 
@@ -70,7 +66,8 @@ printLibrary();
 //Activate buttons to remove a book
 const tBody= document.querySelector('tBody');
 
-tBody.addEventListener('click' , eventDelegation)
+tBody.addEventListener('click' , eventDelegation);
+printLibrary();
 
 function eventDelegation(e){
    
@@ -82,10 +79,7 @@ function eventDelegation(e){
 }
 
 
-//PRINT LIBRARY
-
 function printLibrary(){
-    //delete all table
 
     myLibrary.forEach(book => {
         createRow(book.title, book.author, book.pages, book.read);
@@ -99,20 +93,14 @@ function printLibrary(){
 buttonAdd.addEventListener(`click`, addBook );
 
 function addBook() {
-
+    //To get value from radio button
     let readArray=Array.from(read);
     const readValue = getRadio(readArray);
+
     addBookToLibrary(title.value, author.value,numpages.value,readValue);
     createRow(title.value, author.value,numpages.value,readValue);
-    myLibrary.forEach(book => {console.log(book.info())})
-    //As we create new book we need to update nodelist of removal buttons
-    // buttonTest = document.querySelectorAll('.bookList button');
     resetInputs();
-    
 }
-
-
-//RESET InpUTS
 
 function resetInputs(){
     title.value = null;
