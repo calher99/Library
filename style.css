@@ -1,4 +1,4 @@
-:root{
+:root {
 
   --light: #f1f5f9;
   --medium: #94a3b8;
@@ -7,17 +7,17 @@
 }
 
 
-body{
+body {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
-  gap:15px;
+  gap: 15px;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  
+
 }
 
-.header{
+.header {
   grid-column: 1/3;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -27,14 +27,15 @@ body{
   color: var(--light);
   padding: 5px;
 }
-.logIn{
+
+.logIn {
   display: flex;
   flex-direction: column;
   cursor: pointer;
   align-items: center;
 }
 
-.displayBook{
+.displayBook {
 
   justify-self: center;
   align-self: center;
@@ -43,16 +44,17 @@ body{
 
 .addForm {
   padding: 10px;
-  
+
 }
 
 
-.radio{
+.radio {
   display: flex;
   align-items: center;
 
 }
-.radio_container{
+
+.radio_container {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -64,128 +66,142 @@ form {
   gap: 5px;
 }
 
+/* Table styles */
+
+table {
+  border-collapse: collapse;
+  border: 2px solid var(--medium);
+  letter-spacing: 1px;
+
+}
+
+td,
+th {
+  border: 1px solid var(--medium);
+  padding: 10px 20px;
+}
+
+th {
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: var(--light);
+}
+
+tr:nth-child(odd) td {
+  background-color: white;
+}
+
+caption {
+  padding: 10px;
+}
+
+tbody {
+  font-size: 95%;
+  font-style: italic;
+}
 
 
+/* Classic form */
 
+button,
+label,
+input {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+  border-radius: 6px;
+}
 
+td>button {
+  width: 7rem;
+  height: 1.5rem;
+  border: 1px solid var(--dark);
+}
 
-  /* Table styles */
+input {
+  border: 1px solid var(--dark);
+}
 
-  table {
-    border-collapse: collapse;
-    border: 2px solid var(--medium);
-    letter-spacing: 1px;
-   
-  }
-  
-  td, th {
-    border: 1px solid var(--medium);
-    padding: 10px 20px;
-  }
-  
-  th {
-    background-color:var(--dark);
-    color: var(--light);
-  }
-  
-  td {
-    text-align: center;
-  }
-  
-  tr:nth-child(even) td {
-    background-color: var(--light);
-  }
-  
-  tr:nth-child(odd) td {
-    background-color: white;
-  }
-  
-  caption {
-    padding: 10px;
-  }
-  tbody {
-    font-size: 95%;
-    font-style: italic;
-  }
-  
+button {
+  background-color: var(--light);
+  cursor: pointer;
+}
 
-  /* Classic form */
+td>button:hover {
+  background-color: var(--medium);
+}
 
-  button,
-  label,
-  input
-   {
-    display: block;
-    font-family: inherit;
-    font-size: 100%;
-    margin: 0;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 5px;
-    height: 30px;
-    border-radius: 6px;
-  }
+button[type="button"] {
+  width: 100%;
+  height: 1.6rem;
+  border: 1px solid var(--dark)
+}
 
-  td>button{
-    width: 7rem;
-    height: 1.5rem;
-    border: 1px solid var(--dark);
-  }
-  input{
-    border: 1px solid var(--dark);
-  }
-  button{
-    background-color: var(--light);
-    cursor: pointer;
-  }
-  td>button:hover{
-    background-color: var(--medium);
-  }
+button[type="button"]:hover {
+  background-color: var(--dark);
+  color: var(--light);
+}
 
-  button[type="button"]{
-    width: 100%;
-    height: 1.6rem;
-    border: 1px solid var(--dark)
-  }
+input[type="radio"] {
+  appearance: none;
+}
 
-  button[type="button"]:hover{
-    background-color: var(--dark);
-    color: var(--light);
-  }
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid gray;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -2px;
+  outline: none;
+}
 
-  input[type="radio"] {
-    appearance: none;
-  }
+input[type="radio"]::before {
+  display: block;
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background-color: var(--dark);
+  font-size: 1.2em;
+  transform: translate(3px, 3px) scale(0);
+  transform-origin: center;
+  transition: all 0.3s ease-in;
+}
 
-  input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    border: 2px solid gray;
-    /* Adjusts the position of the checkboxes on the text baseline */
-    vertical-align: -2px;
-    outline: none;
-  }
+input[type="radio"]:checked::before {
+  transform: translate(-1.6px, -1.6px) scale(1.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
 
-  input[type="radio"]::before {
-    display: block;
-    content: " ";
-    width: 10px;
-    height: 10px;
-    border-radius: 6px;
-    background-color: var(--dark);
-    font-size: 1.2em;
-    transform: translate(3px, 3px) scale(0);
-    transform-origin: center;
-    transition: all 0.3s ease-in;
-  }
+input:focus {
+  outline: none;
+  /*Remove default blue outline from Safari*/
+  border: 2px solid var(--dark);
+}
 
-  input[type="radio"]:checked::before {
-    transform: translate(-1.6px, -1.6px) scale(1.3);
-    transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
-  }
+/* Error form */
 
-  input:focus{
-    outline: none; /*Remove default blue outline from Safari*/
-    border: 2px solid var(--dark);
-  }
+.input-container {
+  position: relative;
+  border: 1px solid black;
+}
+
+.error {
+  position: absolute;
+  left: 200px;
+  bottom: 7px;
+  color: red;
+}
