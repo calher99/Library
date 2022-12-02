@@ -2,32 +2,61 @@
 
 let myLibrary =[];
 
-function book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-book.prototype.info = function() {
-   
-    if(this.read==="read"){
-        return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is read. `); 
-    }else{
-        return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is not read. `); 
-    }  
-} 
-
-book.prototype.setRead = function() {
-    
-    if(this.read ==="read"){
-        this.read = "unread";
-    }else{
-        this.read = "read";
+class Book {
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
+
+    setRead(){
+        if(this.read ==="read"){
+            this.read = "unread";
+        }else{
+            this.read = "read";
+        }
+    }
+    info () {
+        if(this.read==="read"){
+            return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is read. `); 
+        }else{
+            return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is not read. `); 
+        }  
+    }
+
+
+
+
 }
+//OLD CODE WITH OBJECT CONSTRUCTORS HAS BEEN CHANGED TO CLASSES
+
+// function book(title, author, pages, read){
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+// }
+// book.prototype.info = function() {
+   
+//     if(this.read==="read"){
+//         return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is read. `); 
+//     }else{
+//         return (`The book ${this.title} by ${this.author} has ${this.pages} pages and it is not read. `); 
+//     }  
+// } 
+
+// book.prototype.setRead = function() {
+    
+//     if(this.read ==="read"){
+//         this.read = "unread";
+//     }else{
+//         this.read = "read";
+//     }
+// }
 
 function addBookToLibrary(title, author, pages, read){
-    myLibrary.push(new book(title, author, pages, read));
+    myLibrary.push(new Book(title, author, pages, read));
 }
 
 function findBook(titleSearched) {
@@ -90,10 +119,19 @@ function printLibrary(){
 //SAVE DATA NEW BOOK
 
 
-buttonAdd.addEventListener(`click`, addBook );
+buttonAdd.addEventListener(`click`, () => {
+    // Here now we need to check each value of the inputs
+    const valid = checkInputValidity()
+    console.log(valid);
+    // Also need to create classes to display error
+    // Also need to create an event listener type input for eah input to detect
+    // each time we type anything
+    addBook()
+});
 
 function addBook() {
     //To get value from radio button
+    
     let readArray=Array.from(read);
     const readValue = getRadio(readArray);
 
@@ -112,7 +150,6 @@ function resetInputs(){
 //Radio button check
 
 function getRadio (array){
-    
     const checkedButton = array.filter(array => array.checked);
     // Did not understand why cant access with checkedButton.value
     return checkedButton[0].value;
@@ -164,7 +201,7 @@ function removeBook(e){
     //To use in DOM
     const classToRemove =e.target.classList.value;
     //To get the exact title to use in array
-    const titleToRemove = e.target.classList.value.replaceAll( '-', ' ')
+    const titleToRemove = e.target.classList.value.replaceAll( '-', ' ');
     removeFromLibrary(titleToRemove);
     removeFromTable(classToRemove);
    
