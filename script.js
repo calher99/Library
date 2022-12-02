@@ -122,7 +122,7 @@ function printLibrary(){
 buttonAdd.addEventListener(`click`, () => {
     // Here now we need to check each value of the inputs
     // const valid = checkInputValidity()
-    if(checkTitle() || checkAuthor() || checkPages()){
+    if(checkTitle() || checkAuthor() || checkPages() || checkRadio()){
         //If any of them is 1 means that there is a field incorrect
 
     }else{
@@ -196,10 +196,31 @@ function showPagesError() {
       } 
 }
 
+function checkRadio () {
+    let valid =0;
+    read.forEach(button => {
+        if(button.checked){
+            valid = true;
+        }
+    })
+    if (valid === 0) {
+        showReadError()
+    }
+    // Return 0 when correct 1 whn found an error
+    return !valid;
+}
+
+function showReadError() {
+    const errorRead = document.querySelector('#error-read');
+    errorRead.textContent = "You should select one option!"
+}
+
+
 function clearErrors () {
-    const errorPages = document.querySelector('#error-pages');
-    const errorAuthor = document.querySelector('#error-author');
-    const errorTitle = document.querySelector('#error-title');
+    document.querySelector('#error-pages').textContent ="";
+    document.querySelector('#error-author').textContent="";
+    document.querySelector('#error-title').textContent="";
+    document.querySelector('#error-read').textContent="";
 }
 
 function addBook() {

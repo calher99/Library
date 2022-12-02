@@ -38,21 +38,22 @@
     <form id="newBook" name="addBook" action="">
       <label for="title">Title: *</label>
       <div class="input-container">
-        <input type="text" id="title" name="title" required placeholder=" " maxlength="245">
+        <input type="text" id="title" name="title" required maxlength="245">
         <span class="error" id="error-title"></span>
       </div>
       <label for="author">Author: *</label>
       <div class="input-container">
-        <input type="text" id="author" name="author" required placeholder=" " pattern="^[^0-9]+$" maxlength="245">
+        <input type="text" id="author" name="author" required pattern="^[^0-9]+$" maxlength="245">
         <span class="error" id="error-author"></span>
       </div>
-      <label for="numpages">Pages:</label>
+      <label for="numpages">Pages: *</label>
       <div class="input-container">
-        <input type="number" id="numpages" name="numpages" min="0" max="10000" placeholder=" ">
+        <input type="number" id="numpages" name="numpages" required min="0">
         <span class="error" id="error-pages"></span>
       </div>
       <legend>Have you read the book?</legend>
       <div class="radio_container">
+        <span class="error-radio" id="error-read"></span>
         <div class="radio">
           <label>Yes</label>
           <input type="radio" name="checkread" value="read">

@@ -58,6 +58,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  position: relative;
 }
 
 form {
@@ -196,7 +197,6 @@ input:focus {
 
 .input-container {
   position: relative;
-  border: 1px solid black;
 }
 
 .error {
@@ -204,4 +204,17 @@ input:focus {
   left: 200px;
   bottom: 7px;
   color: red;
+  background-color: var(--light);
+  border-radius: 5px;
+  width: 120px;
+}
+
+.error-radio {
+  position: absolute;
+  left: 200px;
+  bottom: 30px;
+  color: red;
+  background-color: var(--light);
+  border-radius: 5px;
+  width: 120px;
 }
