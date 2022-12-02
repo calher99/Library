@@ -121,13 +121,86 @@ function printLibrary(){
 
 buttonAdd.addEventListener(`click`, () => {
     // Here now we need to check each value of the inputs
-    const valid = checkInputValidity()
-    console.log(valid);
+    // const valid = checkInputValidity()
+    if(checkTitle() || checkAuthor() || checkPages()){
+        //If any of them is 1 means that there is a field incorrect
+
+    }else{
+        clearErrors()
+        addBook()
+    }
+    
     // Also need to create classes to display error
     // Also need to create an event listener type input for eah input to detect
     // each time we type anything
-    addBook()
+    
 });
+
+function checkTitle () {
+    if (!title.validity.valid) {
+        showTitleError()
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function showTitleError() {
+    const errorTitle = document.querySelector('#error-title')
+    if (title.validity.valueMissing) {
+        // If the field is empty,
+        // display the following error message.
+        errorTitle.textContent = "You need to enter a book title";
+      } else if (title.validity.tooLong) {
+        // If the data is too long,
+        // display the following error message.
+        errorTitle.textContent = `Title should be at least ${title.minLength} characters; you entered ${title.value.length}.`;
+      } 
+}
+
+function checkAuthor() {
+    if (!author.validity.valid) {
+        showAuthorError()
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function showAuthorError() {
+    const errorAuthor = document.querySelector('#error-author')
+    if (author.validity.valueMissing) {
+        errorAuthor.textContent = "You need to enter a book Author";
+      } else if (author.validity.tooLong) {
+        errorAuthor.textContent = `Title should be at least ${title.minLength} characters; you entered ${title.value.length}.`;
+      } else if (author.validity.patternMismatch) {
+        errorAuthor.textContent = 'A name does not contain numbers!';
+      } 
+}
+
+function checkPages() {
+    if (!numpages.validity.valid) {
+        showPagesError()
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function showPagesError() {
+    const errorPages = document.querySelector('#error-pages')
+    if (numpages.validity.rangeUnderflow) {
+        errorPages.textContent = "A book cannot have negarive pages!";
+      } else if (numpages.validity.valueMissing) {
+        errorPages.textContent = 'Please enter the field';
+      } 
+}
+
+function clearErrors () {
+    const errorPages = document.querySelector('#error-pages');
+    const errorAuthor = document.querySelector('#error-author');
+    const errorTitle = document.querySelector('#error-title');
+}
 
 function addBook() {
     //To get value from radio button
